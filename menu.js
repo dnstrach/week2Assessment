@@ -32,12 +32,12 @@
 
 //CODE HERE
 const pizza = {
-    name: 'margherita',
-    price: 9.00,
-    category: 'lunch',
+    name: 'bruschetta',
+    price: 8,
+    category: 'appetizer',
     popularity: 5,
-    rating: 5,
-    tags: 'most popular',
+    rating: 10,
+    tags: ['vegetarian', 'fan-fav']  
 }
 
 
@@ -52,6 +52,12 @@ const pizza = {
 
 //CODE HERE
 console.log(pizza.popularity)
+//dot notation:
+//console.log(objectName.keyOrProperty)
+
+// console.log(pizza['popularity'])
+//bracket notation:
+//console.log(objectName['keyOrProperty'])
 
 
 /*
@@ -62,7 +68,13 @@ console.log(pizza.popularity)
 */
 
 //CODE HERE
-console.log(pizza['tags'])
+//console.log(pizza.tags)
+//only logs values in array 
+//[ 'vegetarian', 'fan-fav' ]
+
+console.log(pizza.tags[1])
+//pulls tags value at index 1 as a string
+//fan-fav
 
 
 /*
@@ -73,8 +85,17 @@ console.log(pizza['tags'])
 */
 
 //CODE HERE
-const {price: margheritaPrice} = pizza
-console.log(margheritaPrice)
+// let price = pizza.price
+// console.log(price)
+//8
+
+// DESTRUCTURE: code is reading the same as above
+// declare variable {propertyName} = objectName
+// code is being read as let the variable price/property in the object equal value in the pizza object
+let {price} = pizza
+console.log(price)
+//8
+
 
 
 /*
@@ -85,8 +106,8 @@ console.log(margheritaPrice)
 */
 
 //CODE HERE
-const {category: margheritaCatergory} = pizza
-console.log(margheritaCatergory)
+let {category} = pizza
+console.log(category)
 
 
 //////////////////PROBLEM 3////////////////////
@@ -102,9 +123,49 @@ console.log(margheritaCatergory)
 */
 
 //CODE HERE
-let foodArr = ['margherita', 9.00,'lunch', 5, 5, 'most popular']
-
-
+const foodArr = [
+    { 
+        name: 'meatballs',
+        price: 12,
+        category: 'appetizer',
+        popularity: 5,
+        rating: 9,
+        tags: ['vegan-option'] 
+    },
+    {   name: 'garlic bread',
+        price: 5,
+        category: 'appetizer',
+        popularity: 4,
+        rating: 10,
+        tags: ['vegetarian', 'fan-fav']
+    },
+    {    
+        name: 'margherita pizza',
+        price: 11,
+        category: 'entree',
+        popularity: 4,
+        rating: 10,
+        tags: ['vegetarian', 'gluten-free option']
+    },
+    {
+        name: 'meat lovers pizza',
+        price: 13,
+        category: 'entree',
+        popularity: 5,
+        rating: 8,
+        tags: ['spicy', 'fan-fav'] 
+    },
+    {
+        name: 'cesar salad',
+        price: 4,
+        category: 'side',
+        popularity: 4,
+        rating: 8,
+        tags: ['vegetarian'] 
+    }
+]
+  
+ 
 //////////////////PROBLEM 4////////////////////
 /* 
     Let's filter the food objects according
@@ -118,12 +179,10 @@ let foodArr = ['margherita', 9.00,'lunch', 5, 5, 'most popular']
 */
 
 //CODE HERE
-
 // const filteredFood = foodArr.filter(/* CALLBACK HERE */)
-const filteredFood = foodArr.filter(function(tags, )){
-    console.log()
-}
-
+const filteredFood = foodArr.filter((food) => food.tags.includes('vegetarian'))
+console.log(filteredFood)
+//logs objects with vegetarian tag
 
 
 //////////////////PROBLEM 5////////////////////
@@ -166,6 +225,19 @@ const filteredFood = foodArr.filter(function(tags, )){
 */
 
 //CODE HERE
+const filterByProperty = (property, number, type) => {
+    const foodFilter = foodArr.filter((food) => {
+        if(type === 'above'){
+            return food[property] > number
+        }else{
+            return food[property] < number
+        }
+    })
+
+    return foodFilter
+}
+
+//returns food objects with numbers above or below x amount
 
 
 /*
@@ -176,3 +248,5 @@ const filteredFood = foodArr.filter(function(tags, )){
 */
 
 //CODE HERE
+console.log(filterByProperty('rating', 8, 'above'))
+//logs foodArr objects with ratings above 9

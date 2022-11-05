@@ -22,8 +22,13 @@
 */
 
 //CODE HERE
-const greetUser = (username) => `Welcome back, ${username}`
+const greetUser = (username) => `Welcome back, ${username}!`
 
+// const greetUser = (username) => {
+//     return `Welcome back, ${username}`
+// }
+
+console.log(greetUser('Andrew'))
 
 
 //////////////////PROBLEM 2////////////////////
@@ -50,15 +55,34 @@ const deliveryAreaZipCodes = [85205, 85204, 85203, 85213, 85206]
 
 //CODE HERE
 
-
-function canWeDeliver (zipcode) {
-    for (let i = 0; i < deliveryAreaZipCodes.length; i++){
-        if (zipcode === deliveryAreaZipCodes[i])
-        return "You're in the delivery zone!"
-    } if (zipcode !== deliveryAreaZipCodes[i]){
-        return "Sorry, we can't deliver to that address"
+function canWeDeliver(zipcode){
+    for(i = 0; i < deliveryAreaZipCodes.length; i++){
+        if (zipcode === deliveryAreaZipCodes[i]){
+            return `You're in our delivery zone!`
+        }if (zipcode !== deliveryAreaZipCodes[i]){
+            return `Sorry, we can't deliver to that address`  
+        }
     }
 }
+
+console.log(canWeDeliver(85205))
+console.log(canWeDeliver(92692))
+
+//Note if you use else will only run loop once
+
+// const canWeDeliver = (zipcode) => {
+
+//     for(i = 0; i < deliveryAreaZipCodes.length; i++){
+//         if (zipcode === deliveryAreaZipCodes[i]){
+//             return `You're in our delivery zone!`
+//         }
+//     }
+
+//     return "Sorry, we can't deliver to that address"
+// }
+
+// console.log(canWeDeliver(85205))
+// console.log(canWeDeliver(92692))
 
 
 /* 
@@ -79,15 +103,22 @@ function canWeDeliver (zipcode) {
 */
 
 // CODE HERE
-function canWeDeliverTwo (zipcode) {
-    for (let i = 0; i < deliveryAreaZipCodes.length; i++){
-        if (zipcode.includes(deliveryAreaZipCodes[i]))
-        return "You're in the delivery zone!"
-    } if (zipcode !== deliveryAreaZipCodes[i]){
-        return "Sorry, we can't deliver to that address"
+// const canWeDeliverTwo = (zipcode) => deliveryAreaZipCodes.includes(zipcode)
+
+// console.log(canWeDeliverTwo(85205)) -> true
+// console.log(canWeDeliverTwo(92692)) -> false
+
+const canWeDeliverTwo = (zipcode) => {
+
+    if (deliveryAreaZipCodes.includes(zipcode)){
+        return 'We can deliver'
+    } else {
+        return 'No pizza for you'
     }
 }
 
+console.log(canWeDeliverTwo(85205))
+console.log(canWeDeliverTwo(92692))
 
 //////////////////PROBLEM 3////////////////////
 /* 
@@ -95,7 +126,7 @@ function canWeDeliverTwo (zipcode) {
     information about a couple of deals that are
     available at the restaurant currently. 
 
-    You are going to access the object's properties 
+    You are going to ACCESS the object's properties 
     and change some values. Don't edit the array 
     directly, let's use the `replace` method.
 
@@ -123,7 +154,27 @@ const deals = [
 */
 
 //CODE HERE
+//use dot or bracket notation to access needed info to change value of 15% to 10% off using replace method
+//replace method accepts 2 arguments: ("what to replace", "what to replace with")
 
+console.log(deals[0])
+//logs items at index 0 in object:
+// {
+//     title: '15% Off!',
+//     desc: 'Applied to your entire order when you spend $30 or more'
+//   }
+
+console.log(deals[0].title)
+//logs the value at title & desc/index 0 by using bracket notation with title property:
+//15% Off!
+
+deals[0].title = deals[0].title.replace('15', '10')
+console.log(deals[0])
+//logs object at index 0 with replaced value
+
+ //const newDeal = deals[0].title.replace('15', '10')
+ //console.log(newDeal)
+ //logs the value of what was replaced at index 0
 
 
 
@@ -141,3 +192,21 @@ const deals = [
 */
 
 //CODE HERE
+console.log(deals[1])
+//logs current keys and values at index 1 in object:
+// {
+//     title: 'Free Kids Meal with 2 Regular Entrees',
+//     desc: '   This deal lasts until the end of March! '
+//  }
+
+console.log(deals[1].desc)
+//logs value of desc in index 1 in object
+//This deal lasts until the end of March!  
+
+deals[1].desc = deals[1].desc.replace('March', 'April').trim()
+console.log(deals[1])
+//logs:
+//{
+//     title: 'Free Kids Meal with 2 Regular Entrees',
+//     desc: 'This deal lasts until the end of April!'
+//   }

@@ -30,12 +30,22 @@
 */
 
 //CODE HERE
-class Ticket {
+class Ticket{
     constructor(items, orderTime, customerId){
-        this.status = queued;
+        this.items = items
+        this.orderTime = orderTime
+        this.customerId = customerId
+        this.status = 'queued'
+    }
+
+    updateStatus(newStatus){
+        this.status = newStatus
+        console.log(`The order for cutomer ${this.customerId} is now ${this.status}`)
     }
 }
 
+//functions within a class do not require arrow or function declation
+//status not included in parameter because set to queue value
 
 
 /*
@@ -51,6 +61,15 @@ class Ticket {
 
 //CODE HERE
 
+const firstTicket = new Ticket('pizza, bread, and soda', '7:03 PM', 575)
+//passing items in for constructor 
+console.log(firstTicket)
+//  Ticket {
+//     items: 'pizza, bread, and soda',
+//     orderTime: '7:03 PM',
+//     customerId: 575,
+//     status: 'queued'
+//   }
 
 /*
     Call the `updateStatus` method on
@@ -59,3 +78,7 @@ class Ticket {
 */
 
 //CODE HERE
+
+firstTicket.updateStatus('cooking')
+//The order for cutomer 575 is now cooking
+//used instantiation

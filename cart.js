@@ -37,10 +37,11 @@ const cart = [
 
 // const summedPrice = cart.reduce(/* CALLBACK HERE */)
 
-let priceArray = [9.99, 8.99, 7.99]
-const summedPrice = cart.reduce(function(elem, index))
-console.log(summedPrice)
+const summedPrice = cart.reduce((acc, curr) => {
+    return acc + curr.price
+}, 0)
 
+console.log(summedPrice)
 
 //////////////////PROBLEM 2////////////////////
 /*  
@@ -58,10 +59,19 @@ console.log(summedPrice)
 */
 
 //CODE HERE
-
-function calcFinalPrice(cartTotal, couponValue, tax){
+const calcFinalPrice = (cartTotal, couponValue, tax) => {
+    //console.log(cartTotal)
     
+    const totalBeforeCoupon = (cartTotal * (1 + tax).tofixed())
+    //console.log(totalBeforeCoupon)
+    //.tofixed(2) rounds number to 2 decimal places
+    
+    const finalPrice = totalBeforeCoupon - couponValue
+    
+    return finalPrice
 }
+
+console.log(calcFinalPrice(summedPrice, 5, .06))
 
 
 
@@ -86,7 +96,7 @@ function calcFinalPrice(cartTotal, couponValue, tax){
 */
 
 /*
-    TEXT ANSWER HERE
+    first name, last name, phone number, address
 
 */
 
@@ -96,3 +106,9 @@ function calcFinalPrice(cartTotal, couponValue, tax){
 */
 
 //CODE HERE
+const customer = {
+    firstName: 'Dom',
+    lastName: 'Strachan',
+    address: 'some address',
+    phoneNumber: '5454335453',
+}

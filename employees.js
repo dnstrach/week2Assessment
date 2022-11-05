@@ -21,13 +21,14 @@
 
 //CODE HERE
 class Employee {
-    constructor (name, shifts){
-        this.name = Dom;
-        this.shifts = fulltime;
+    constructor(name, shifts){
+        this.name = name
+        this.shifts = shifts
     }
-    
-    getSchedule.Employee
-    return `${name} works ${fulltime}`
+
+    getSchedule(){
+        console.log(`${this.name} works on ${this.shifts}`)
+    }
 }
 
 
@@ -43,6 +44,13 @@ class Employee {
 */
 
 //CODE HERE
+const empOne = new Employee('Jess', 'weekday mornings, weekday afternoons')
+console.log(empOne)
+// Employee {
+//     name: 'Jess',
+//     shifts: 'weekday mornings, weekday afternoons'
+//   }
+
 
 /*
     Call the `getSchedule` method on the
@@ -50,6 +58,8 @@ class Employee {
 */
 
 //CODE HERE
+empOne.getSchedule()
+//Jess works on weekday mornings, weekday afternoons
 
 
 /*
@@ -65,6 +75,13 @@ class Employee {
 */
 
 //CODE HERE
+
+const empTwo = {...empOne}
+//spread operator copies and grabs key values and places them in new object or array
+
+empTwo.name = 'Nick'
+console.log(empTwo)
+//{ name: 'Nick', shifts: 'weekday mornings, weekday afternoons' }
 
 
 
@@ -93,7 +110,21 @@ class Employee {
 
 //CODE HERE
 
+class Manager extends Employee{
+    constructor(name, shifts, employees){
+        super(name, shifts)
+        this.employees = employees
+    }
+    getEmployees(){
+        console.log(`${this.name} manages ${this.employees}`)
+    }
 
+    addEmployee(emp){
+        this.employees.push(emp)
+    }
+}
+
+//super function grabs previous above class's property/value
 
 /*
     Create a new instance of your class.
@@ -107,6 +138,15 @@ class Employee {
 */
 
 //CODE HERE
+const manager = new Manager('Winston', 'weekday mornings, weekday afternoons', ['Cece and Schmidt'])
+console.log(manager)
+// Manager {
+//     name: 'Winston',
+//     shifts: 'weekday mornings, weekday afternoons',
+//     employees: [ 'Cece and Schmidt' ]
+//   }
+
+
 
 
 /*
@@ -115,6 +155,9 @@ class Employee {
 */
 
 //CODE HERE
+manager.getEmployees()
+//Winston manages Cece and Schmidt
+
 
 /*
     Call the `addEmployee` method on the 
@@ -123,6 +166,9 @@ class Employee {
 */
 
 //CODE HERE 
+manager.addEmployee('Coach')
+//will not add employee until invoking function below
+
 
 /*
     Call the `getEmployees` method on the
@@ -131,3 +177,5 @@ class Employee {
 */
 
 //CODE HERE
+manager.getEmployees()
+//Winston manages Cece and Schmidt,Coach
